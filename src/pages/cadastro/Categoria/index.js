@@ -21,12 +21,11 @@ function CadastroCategoria() {
             [chave]: valor, //nome: 'valor'
         })
     }
-
-    function handleChange(infosDoEvento) { //função genérica para pegar todos os valores
-        const { getAttribute, value } = infosDoEvento.target;
+    //função genérica para pegar todos os valores
+    function handleChange(infosDoEvento) {
         setValue(
-            getAttribute('name'),
-            value
+            infosDoEvento.target.getAttribute('name'),
+            infosDoEvento.target.value
         );
     }
     return (
@@ -42,33 +41,50 @@ function CadastroCategoria() {
             }}>
 
                 <FormField
+                    label="Nome da Categoria"
+                    type="text"
+                    name="nome"
                     value={values.nome}
                     onChange={handleChange}
                 />
 
-                <div>
-                    <label>
-                        Descrição:
-                    <textarea
-                            type="text"
-                            value={values.descricao}
-                            name="descricao"
-                            onChange={handleChange}
-                        />
-                    </label>
-                </div>
+                <FormField
+                    label="Descrição:"
+                    type="????"
+                    name="descricao"
+                    value={values.descricao}
+                    onChange={handleChange}
+                />
+                {/* <div>
+          <label>
+            Descrição:
+            <textarea
+              type="text"
+              value={values.descricao}
+              name="descricao"
+              onChange={handleChange}
+            />
+          </label>
+        </div> */}
 
-                <div>
-                    <label>
-                        Cor:
-                    <input
-                            type="color"
-                            value={values.cor}
-                            name="cor"
-                            onChange={handleChange}
-                        />
-                    </label>
-                </div>
+                <FormField
+                    label="Cor"
+                    type="color"
+                    name="cor"
+                    value={values.cor}
+                    onChange={handleChange}
+                />
+                {/* <div>
+          <label>
+            Cor:
+            <input
+              type="color"
+              value={values.cor}
+              name="cor"
+              onChange={handleChange}
+            />
+          </label>
+        </div> */}
 
                 <button>
                     Cadastrar
