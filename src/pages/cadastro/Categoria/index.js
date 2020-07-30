@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PageDefault from '../../../components/PageDefault';
 import { Link } from 'react-router-dom';
+import FormField from '../../../components/FormField';
 
 
 function CadastroCategoria() {
@@ -40,7 +41,10 @@ function CadastroCategoria() {
                 setValues(valoresIniciais)
             }}>
 
-                <FormField />
+                <FormField
+                    value={values.nome}
+                    onChange={handleChange}
+                />
 
                 <div>
                     <label>
