@@ -13,11 +13,13 @@ outline: none;
 border-radius: 5px;
 text-decoration: none;
 display: inline-block;
-transition: opacity .3s;
+
 
 &:hover,
 &:focus {
-opacity: .5;
+color: #d72323;
+border-color: #d72323;
+opacity: 1;
 }
 
 `;
