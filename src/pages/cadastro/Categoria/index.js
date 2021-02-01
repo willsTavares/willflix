@@ -1,44 +1,47 @@
 import React, { useState } from 'react';
-import PageDefault from '../../../components/PageDefault';
 import { Link } from 'react-router-dom';
+import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
-
+import Button from '../../../components/Button';
 
 function CadastroCategoria() {
     const valoresIniciais = {
         nome: '',
         descricao: '',
         cor: '',
-    }
+    };
     const [categorias, setCategorias] = useState([]);
     const [values, setValues] = useState(valoresIniciais);
 
-
     function setValue(chave, valor) {
-        //chave: nome, descricao, senha, etc...
+        // chave: nome, descricao, senha, etc...
         setValues({
             ...values,
-            [chave]: valor, //nome: 'valor'
-        })
+            [chave]: valor, // nome: 'valor'
+        });
     }
-    //função genérica para pegar todos os valores
+    // função genérica para pegar todos os valores
     function handleChange(infosDoEvento) {
         setValue(
             infosDoEvento.target.getAttribute('name'),
-            infosDoEvento.target.value
+            infosDoEvento.target.value,
         );
     }
     return (
         <PageDefault>
-            <h1>Cadastro de Categoria: {values.nome}</h1>
+            <h1>
+                Cadastro de Categoria:
+        {values.nome}
+            </h1>
             <form onSubmit={function handleSubmit(infosDoEvento) {
                 infosDoEvento.preventDefault();
                 setCategorias([
-                    ...categorias,  /*Os ... é uma forma de adicionar valores novos sem deletar os antigos */
-                    values
+                    ...categorias, /* Os ... é uma forma de adicionar valores novos sem deletar os antigos */
+                    values,
                 ]);
-                setValues(valoresIniciais)
-            }}>
+                setValues(valoresIniciais);
+            }}
+            >
 
                 <FormField
                     label="Nome da Categoria"
@@ -50,7 +53,7 @@ function CadastroCategoria() {
 
                 <FormField
                     label="Descrição:"
-                    type="????"
+                    type="textarea"
                     name="descricao"
                     value={values.descricao}
                     onChange={handleChange}
@@ -86,35 +89,32 @@ function CadastroCategoria() {
           </label>
         </div> */}
 
-                <button>
+                <Button>
                     Cadastrar
-            </button>
+        </Button>
             </form>
 
             <ul>
-                {categorias.map((categoria, indice) => {
-                    return (
-                        <li key={`${categoria}${indice}`}>
-                            {categoria.nome}
-                        </li>
-                    )
-                })}
+                {categorias.map((categoria, indice) => (
+                    <li key={`${categoria}${indice}`}>
+                        {categoria.nome}
+                    </li>
+                ))}
             </ul>
-
 
             <Link to="/">
                 Ir para Home
-            </Link>
-        </PageDefault >
-    )
+      </Link>
+        </PageDefault>
+    );
 }
 
 export default CadastroCategoria;
 
-// {categorias.map((categoria, indice) => {   indice serve quando se precisa duplicar uma informação de forma correta, 
+// {categorias.map((categoria, indice) => {   indice serve quando se precisa duplicar uma informação de forma correta,
 //                                            sem aparecer erros no console, cada key passa a ser diferente
 //     return (
-//         <li key={`${categoria}${indice}`}> 
+//         <li key={`${categoria}${indice}`}>
 //             {categoria}
 //         </li>
 //     )
